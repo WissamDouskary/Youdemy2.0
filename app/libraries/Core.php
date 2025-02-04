@@ -2,7 +2,7 @@
 // create rooting configuration
 
 Class Core {
-    protected $currentController = 'test';
+    protected $currentController = 'Pages';
     protected $currentMethode = 'index';
     protected $params = [];
 
