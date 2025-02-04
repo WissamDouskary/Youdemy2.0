@@ -1,8 +1,9 @@
 <?php
-class Pages extends Controllers
+class Pages extends Controller
 {
     public function index(){
-        $this->view('index');
+        $data = ['title' => "i'am title"];
+        $this->view('index', $data);
     }
 
     public function edit($id){

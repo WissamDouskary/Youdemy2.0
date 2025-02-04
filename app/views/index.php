@@ -1,1 +1,2 @@
-this is index home page
+<?php
+echo $data['title'];

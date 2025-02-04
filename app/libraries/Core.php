@@ -21,7 +21,7 @@ Class Core {
         $this->currentController = new $this->currentController;
 
         // Check for the second URL part (methods)
-        if (!empty($url[1])) {  // Ensure $url[1] exists before accessing it
+        if (!empty($url[1])) {
             if (method_exists($this->currentController, $url[1])) {
                 $this->currentMethode = $url[1];
                 unset($url[1]);
