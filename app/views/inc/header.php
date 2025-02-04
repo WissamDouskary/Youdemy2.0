@@ -6,7 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>YouDemy - Transform Your Future</title>
+    <title><?php echo SITENAME; ?></title>
 </head>
 <body class="bg-gray-50">
 <!-- Navigation -->
@@ -15,7 +15,7 @@
         <div class="flex justify-between items-center h-20">
             <!-- Logo -->
             <div class="flex items-center space-x-2">
-                <span class="text-3xl font-bold text-purple-600">YouDemy</span>
+                <span class="text-3xl font-bold text-purple-600"><?php echo SITENAME; ?></span>
                 <span class="hidden md:inline-block text-sm text-gray-500">| Learn Without Limits</span>
             </div>
             <!-- Navigation Links -->
