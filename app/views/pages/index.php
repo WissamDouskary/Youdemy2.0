@@ -2,7 +2,6 @@
 require_once APPROOT . '/views/inc/header.php';
 ?>
 <?php
-session_start();
 if (isset($_SESSION['message'])) {
     $message = $_SESSION['message'];
     $type = $message['type'];
