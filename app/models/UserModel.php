@@ -22,4 +22,35 @@ Class UserModel {
             return false;
         }
     }
+    public function login ($email, $password){
+        $this->db->query('SELECT * FROM users WHERE email = :email');
+        $this->db->bindParam(':email', $email);
+
+        $row = $this->db->single();
+
+        if (!$row) {
+            return false;
+        }
+
+        $hashedPassword = $row->password;
+
+        if (password_verify($password, $hashedPassword)) {
+            return $row;
+        } else {
+            return false;
+        }
+    }
+
+    public function findByEmail($email){
+        $this->db->query('SELECT * FROM users WHERE email = :email');
+        $this->db->bindparam(':email', $email);
+
+        $row = $this->db->single();
+        //check if a user have this email
+        if($this->db->rowCount() > 1){
+            return true;
+        }else {
+            return false;
+        }
+    }
 }
