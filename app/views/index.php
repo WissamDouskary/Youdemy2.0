@@ -1,4 +1,4 @@
 <?php
 require APPROOT . '/views/inc/header.php';
-echo $data['title'];
+print_r($data);
 require APPROOT . '/views/inc/footer.php';

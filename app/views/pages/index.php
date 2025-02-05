@@ -1,2 +1,2 @@
 <?php
-echo $data['title'];
+echo 'this is index';
