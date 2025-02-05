@@ -11,3 +11,4 @@
 <body class="bg-gray-50">
 <!-- Navigation -->
 <?php require APPROOT . '/views/inc/navbar.php' ?>
+
