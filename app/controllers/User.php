@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 class User extends Controller {
 
     private $usermodal;
@@ -118,7 +118,7 @@ class User extends Controller {
                                 'type' => 'success',
                                 'text' => 'You are now logged in teacher.'
                             ];
-                            redirect('views/teacherdashboard');
+                            redirect('pages/mainprofdash');
                             exit();
                         } else if ($userloggedin->role_id == 3){
                             $_SESSION['role'] = 'student';
@@ -156,5 +156,12 @@ class User extends Controller {
             ];
         }
         $this->view('User/login');
+    }
+
+    public function logout(){
+        session_start();
+        session_destroy();
+        redirect('/User/register');
+        exit();
     }
 }

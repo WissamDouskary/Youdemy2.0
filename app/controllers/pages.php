@@ -10,4 +10,16 @@ Class pages extends Controller {
         $data = ['title' => "this is index page"];
         $this->view('pages/index', $data);
     }
+    public function mainprofdash(){
+        $this->view('profdashboard/maindash');
+    }
+
+    public function create_course(){
+        $this->view('profdashboard/creat_course_dash');
+    }
+
+    public function my_course(){
+        $this->view('profdashboard/my_courses_dash');
+    }
+
 }
