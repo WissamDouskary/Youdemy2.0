@@ -93,7 +93,7 @@ if (isset($_SESSION['message'])) {
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-2">Category</label>
                                 <select name="categories_select" class="w-full p-2 border rounded-md">
-                                <?php foreach ($categorie as $category): ?>
+                                <?php foreach ($data['categorie'] as $category): ?>
                                     <option value="<?php echo $category->category_id; ?>">
                                         <?php echo $category->name; ?>
                                     </option>
