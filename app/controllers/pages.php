@@ -14,6 +14,11 @@ Class pages extends Controller {
     public function courses(){
         $this->view('pages/courses');
     }
+
+    public function admindash(){
+        $this->view('admin_dash/admin_dashboard');
+    }
+
     public function mainprofdash(){
         $this->view('profdashboard/maindash');
     }
