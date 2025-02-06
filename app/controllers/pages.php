@@ -2,6 +2,8 @@
 
 Class pages extends Controller {
 
+    private $courModel;
+
     public function __construct(){
         $this->courModel = $this->model('Cours');
     }
@@ -24,11 +26,21 @@ Class pages extends Controller {
     }
 
     public function create_course(){
-        $this->view('profdashboard/creat_course_dash');
+        $categorie = $this->getCategories();
+        $cat = ['categorie' => $categorie['categories']];
+        $this->view('profdashboard/creat_course_dash', $cat);
     }
 
     public function my_course(){
         $this->view('profdashboard/my_courses_dash');
+    }
+
+    public function getCategories(){
+        $category = $this->courModel->getCategorie();
+        if (empty($category)) {
+            return ['categories' => []];
+        }
+        return ['categories' => $category];
     }
 
 }
