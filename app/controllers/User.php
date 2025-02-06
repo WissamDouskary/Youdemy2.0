@@ -110,7 +110,7 @@ class User extends Controller {
                                 'type' => 'success',
                                 'text' => 'You are now logged in as admin.'
                             ];
-                            redirect('views/admindashboard');
+                            redirect('pages/admindash');
                             exit();
                         }else if ($userloggedin->role_id == 2){
                             $_SESSION['role'] = 'teacher';
