@@ -108,7 +108,7 @@ class User extends Controller {
                             $_SESSION['role'] = 'admin';
                             $_SESSION['message'] = [
                                 'type' => 'success',
-                                'text' => 'You are now logged in as admin.'
+                                'text' => 'Welcome Admin'
                             ];
                             redirect('pages/admindash');
                             exit();
@@ -116,7 +116,7 @@ class User extends Controller {
                             $_SESSION['role'] = 'teacher';
                             $_SESSION['message'] = [
                                 'type' => 'success',
-                                'text' => 'You are now logged in teacher.'
+                                'text' => 'Welcome Teacher'
                             ];
                             redirect('pages/mainprofdash');
                             exit();
