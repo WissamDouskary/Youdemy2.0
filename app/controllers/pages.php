@@ -26,21 +26,12 @@ Class pages extends Controller {
     }
 
     public function create_course(){
-        $categorie = $this->getCategories();
-        $cat = ['categorie' => $categorie['categories']];
-        $this->view('profdashboard/creat_course_dash', $cat);
+        $categorie = $this->courModel->getCategorie();
+        $data = ['categorie' => $categorie];
+        $this->view('profdashboard/creat_course_dash', $data);
     }
 
     public function my_course(){
         $this->view('profdashboard/my_courses_dash');
     }
-
-    public function getCategories(){
-        $category = $this->courModel->getCategorie();
-        if (empty($category)) {
-            return ['categories' => []];
-        }
-        return ['categories' => $category];
-    }
-
 }
