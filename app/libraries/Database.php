@@ -49,6 +49,11 @@ Class Database {
     public function execute(){
         return $this->stmt->execute();
     }
+
+    public function rollback(){
+        return $this->dbh->rollBack();
+    }
+
     // get array of data
     public function resultset(){
         $this->execute();
