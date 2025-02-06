@@ -29,7 +29,7 @@ if (isset($_SESSION['message'])) {
         <div class="max-w-4xl mx-auto">
             <h1 class="text-2xl font-bold mb-8">Create New Course</h1>
 
-            <form class="space-y-8" method="post" action="../Handling/courseHandl.php" enctype="multipart/form-data">
+            <form class="space-y-8" method="post" action="<?php echo URLROOT . '/courses/createCourse'?>" enctype="multipart/form-data">
                 <!-- Basic Information -->
                 <div class="bg-white p-6 rounded-lg shadow-sm">
                     <h2 class="text-xl font-semibold mb-6">Basic Information</h2>
@@ -54,7 +54,9 @@ if (isset($_SESSION['message'])) {
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-2">Category</label>
                                 <select class="w-full p-2 border rounded-md" name="categories_select">
-                                        <option value="1">sport</option>
+                                        <?php foreach ($data['categories'] as $op){ ?>
+                                            <option value="<?php echo $op->category_id ?>"><?php echo $op->name?></option>
+                                        <?php } ?>
                                 </select>
                             </div>
                             <div>
@@ -74,12 +76,12 @@ if (isset($_SESSION['message'])) {
 
                     <div id="video_fields" style="display:none;">
                         <label for="video_file" class="block text-sm font-medium text-gray-700 mb-2">Upload Video (MP4 only):</label>
-                        <input type="file" name="video_file" class="w-full p-2 border rounded-md" accept="video/mp4"><br>
+                        <input type="file" name="course_content" class="w-full p-2 border rounded-md" accept="video/mp4"><br>
                     </div>
 
                     <div id="document_fields" style="display:none;">
                         <label for="document_content" class="block text-sm font-medium text-gray-700 mb-2">Document Content (Text):</label>
-                        <textarea placeholder="Enter Your Course Content.." name="document_content" rows="10" cols="50" class="w-full p-2 border rounded-md"></textarea><br>
+                        <textarea placeholder="Enter Your Course Content.." name="course_content" rows="10" cols="50" class="w-full p-2 border rounded-md"></textarea><br>
                     </div>
                 </div>
 
