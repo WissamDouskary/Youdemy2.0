@@ -8,8 +8,8 @@ class courses extends Controller {
     }
 
     public function createCourse(){
-        $categorie = $this->getCategories();
-        $cat = ['categorie' => $categorie['categories']];
+        $categorie = $this->currentmodel->getCategorie();
+        $data = ['categorie' => $categorie];
 
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $course_title = $_POST['course_title'];
@@ -95,15 +95,8 @@ class courses extends Controller {
                 }
             }
         } else {
-            $this->view('profdashboard/creat_course_dash', $cat);
+            $this->view('profdashboard/creat_course_dash', $data);
         }
-    }
-
-    public function getCategories(){
-        $category = $this->currentmodel->getCategorie();
-        if (empty($category)) {
-            return ['categories' => []];
-        }
-        return ['categories' => $category];
     }
 }
+
