@@ -12,6 +12,7 @@ Class Controller {
     public function view($view, $data = []){
         // check if view is exist
         if (file_exists('../app/views/'. $view .'.php')){
+            extract($data);
             require_once '../app/views/'. $view .'.php';
         }else{
             die("View doesn't exist");

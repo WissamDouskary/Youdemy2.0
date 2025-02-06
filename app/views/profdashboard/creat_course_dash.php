@@ -21,6 +21,46 @@ if (isset($_SESSION['message'])) {
 }
 ?>
 
+<style>
+    .bg-primary { background-color: #7b39ed; }
+    .modal.active {
+        display: flex;
+    }
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5);
+    }
+    .bootstrap-tagsinput {
+        display: flex;
+        flex-wrap: wrap;
+        border: 1px solid #ccc;
+        background-color: #fff;
+        padding: 2px 8px;
+        min-height: 36px;
+        z-index: 9999;
+    }
+
+    .bootstrap-tagsinput .tag {
+        background-color: #007bff;
+        color: white;
+        border-radius: 4px;
+        margin: 2px;
+        padding: 4px 8px;
+    }
+
+    .bootstrap-tagsinput input {
+        border: none;
+        outline: none;
+        min-width: 120px;
+        margin: 2px;
+    }
+</style>
+
 <div class="flex">
     <!-- Sidebar -->
     <?php require_once APPROOT . '/views/profdashboard/inc/sidebar_dash.php'?>
@@ -28,7 +68,6 @@ if (isset($_SESSION['message'])) {
     <div class="flex-1 p-8">
         <div class="max-w-4xl mx-auto">
             <h1 class="text-2xl font-bold mb-8">Create New Course</h1>
-
             <form class="space-y-8" method="post" action="<?php echo URLROOT . '/courses/createCourse'?>" enctype="multipart/form-data">
                 <!-- Basic Information -->
                 <div class="bg-white p-6 rounded-lg shadow-sm">
@@ -53,10 +92,12 @@ if (isset($_SESSION['message'])) {
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-2">Category</label>
-                                <select class="w-full p-2 border rounded-md" name="categories_select">
-                                        <?php foreach ($data['categories'] as $op){ ?>
-                                            <option value="<?php echo $op->category_id ?>"><?php echo $op->name?></option>
-                                        <?php } ?>
+                                <select name="categories_select" class="w-full p-2 border rounded-md">
+                                <?php foreach ($categorie as $category): ?>
+                                    <option value="<?php echo $category->category_id; ?>">
+                                        <?php echo $category->name; ?>
+                                    </option>
+                                <?php endforeach; ?>
                                 </select>
                             </div>
                             <div>

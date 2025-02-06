@@ -60,6 +60,18 @@ Class Database {
         return $this->stmt->fetch(PDO::FETCH_OBJ);
     }
 
+    public function beginTrans(){
+        return $this->dbh->beginTransaction();
+    }
+
+    public function commit(){
+        return $this->dbh->commit();
+    }
+
+    public function lastid(){
+        return $this->dbh->lastInsertId();
+    }
+
     public function rowCount(){
         return $this->stmt->rowCount();
     }
