@@ -38,7 +38,7 @@
                 <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300">
                     <div class="relative">
                         <img src="<?php echo str_replace("C:/xampp/htdocs/Youdemy2.0/", "../", $cour->course_image); ?>" alt="Course thumbnail" class="w-full h-48 object-cover"/>
-                        <?php if($cour->course_image == 'video'): ?>
+                        <?php if($cour->course_type == 'video'): ?>
                             <span class="absolute top-4 left-4 bg-white/90 px-2 py-1 rounded text-xs font-medium text-black bg-purple-600 rounded-full">
                             video
                             </span>
@@ -62,8 +62,7 @@
                             <span class="mx-2">•</span>
                             <span class="text-sm text-gray-600">Enrolled <?php echo date('d-m-Y', strtotime($cour->date_creation)); ?></span>
                         </div>
-
-                        <a href="../pages/CoursePreview.php?course_id="><button class="w-full bg-purple-600 text-white px-6 py-2 rounded-full hover:bg-purple-700 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50">
+                        <a href="<?php echo URLROOT ?>/pages/course_preview/<?php echo $cour->course_id ?>"><button class="w-full bg-purple-600 text-white px-6 py-2 rounded-full hover:bg-purple-700 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50">
                                 View Course
                             </button></a>
                     </div>
