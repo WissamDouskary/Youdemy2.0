@@ -84,10 +84,10 @@ if (isset($_SESSION['Log'])) {
                 <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300">
                     <!-- Course Thumbnail -->
                     <div class="relative">
-                        <img src="<?php echo '../' . $course->course_image ?>" alt="Course thumbnail" class="w-full h-48 object-cover"/>
+                        <img src="<?php echo str_replace("C:/xampp/htdocs/Youdemy2.0/", "../", $course->course_image); ?>" alt="Course thumbnail" class="w-full h-48 object-cover"/>
                         <!-- course type -->
                         <?php if($course->course_type == 'video'){ ?>
-                        <span class="absolute top-4 left-4 bg-white/90 px-2 py-1 rounded text-xs font-medium text-white bg-purple-600 rounded-full">
+                        <span class="absolute top-4 left-4 bg-white/90 px-2 py-1 rounded text-xs font-medium text-white bg-bleu-600 rounded-full">
                             Video
                         </span>
                         <?php }else{ ?>
