@@ -8,7 +8,23 @@ class User extends Controller {
         $this->usermodal = $this->model('UserModel');
     }
     public function register(){
+
+        if (empty($_SESSION['csrf_token'])) {
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+        }
+
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+                $_SESSION['message'] = [
+                    'type' => 'error',
+                    'text' => 'Invalid CSRF token!'
+                ];
+                $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+                redirect('User/register');
+                exit();
+            }
+
             // handling form
             $nom = trim($_POST['nom']);
             $prenom = trim($_POST['prenom']);
@@ -46,24 +62,46 @@ class User extends Controller {
                     'text' => 'Something went wrong. Please try again.'
                 ];
             }
+
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+
             $this->view('User/register', $data);
 
         }
         else{
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
             $data = [
                 'nom' =>'',
                 'prenom' => '',
                 'email' => '',
                 'password' =>'',
                 'role_id' => '',
-                'status' => ''
+                'status' => '',
+                'csrf_token' => $_SESSION['csrf_token']
             ];
             $this->view('User/register', $data);
         }
     }
 
     public function login(){
+
+
+        if (empty($_SESSION['csrf_token'])) {
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+        }
+
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            //CSRF validation
+            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+                $_SESSION['message'] = [
+                    'type' => 'error',
+                    'text' => 'Invalid CSRF token!'
+                ];
+                $_SESSION['csrf_token'] = bin2hex(random_bytes(32)); // Regenerate token
+                redirect('User/login');
+                exit();
+            }
+
             $email = trim($_POST['email']);
             $password = trim($_POST['password']);
             if(empty($email) || empty($password)){
@@ -102,6 +140,8 @@ class User extends Controller {
                     $_SESSION['role'] = $userloggedin->role_id;
                     $_SESSION['status'] = $userloggedin->status;
                     $_SESSION['email'] = $userloggedin->email;
+
+                    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 
                     // redirect after roles
                     if($userloggedin->status == 'active'){
@@ -151,9 +191,11 @@ class User extends Controller {
             }
 
         }else{
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
             $data = [
                 'email' => '',
                 'password' => '',
+                'csrf_token' => $_SESSION['csrf_token']
             ];
         }
         $this->view('User/login');
