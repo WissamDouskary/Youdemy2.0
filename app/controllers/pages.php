@@ -3,9 +3,11 @@
 Class pages extends Controller {
 
     private $courModel;
+    private $enrollModel;
 
     public function __construct(){
         $this->courModel = $this->model('Cours');
+        $this->enrollModel = $this->model('Enrollmodel');
     }
 
     public function index(){
@@ -44,6 +46,8 @@ Class pages extends Controller {
     }
 
     public function EnrollPage(){
-        $this->view('pages/EnrollPage');
+        $enrolls = $this->enrollModel->getEnrollmentsByUser();
+        $data = ['enrolls' => $enrolls];
+        $this->view('pages/EnrollPage', $data);
     }
 }
