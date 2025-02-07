@@ -101,6 +101,7 @@ class User extends Controller {
                     $_SESSION['user'] = $userloggedin;
                     $_SESSION['role'] = $userloggedin->role_id;
                     $_SESSION['status'] = $userloggedin->status;
+                    $_SESSION['email'] = $userloggedin->email;
 
                     // redirect after roles
                     if($userloggedin->status == 'active'){
