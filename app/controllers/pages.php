@@ -50,4 +50,14 @@ Class pages extends Controller {
         $data = ['enrolls' => $enrolls];
         $this->view('pages/EnrollPage', $data);
     }
+
+    public function course_preview($course_id){
+        $course = $this->courModel->getCourseById($course_id);
+        $tags = $this->courModel->getTagsbycourse($course->course_id);
+        $data = [
+            'course' => $course,
+            'tags' => $tags,
+        ];
+        $this->view('pages/course_preview', $data);
+    }
 }
