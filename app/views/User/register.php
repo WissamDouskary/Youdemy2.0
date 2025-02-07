@@ -15,8 +15,8 @@
                     </ul>
                 </div>
             <?php endif; ?>
-
             <form class="mt-8 space-y-6 bg-white p-8 rounded-lg shadow" method="POST" action="<?php echo URLROOT . '/User/register'?>">
+                <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token'], ENT_QUOTES, 'UTF-8'); ?>">
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-700">First Name</label>
