@@ -42,4 +42,8 @@ Class pages extends Controller {
     public function my_course(){
         $this->view('profdashboard/my_courses_dash');
     }
+
+    public function EnrollPage(){
+        $this->view('pages/EnrollPage');
+    }
 }
