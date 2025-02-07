@@ -37,9 +37,9 @@ if (isset($_SESSION['Log'])) {
             cancelButtonText: 'Log In'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = '../pages/sign_up.php';
+                window.location.href = 'http://localhost/youdemy2.0/User/register';
             } else if (result.isDismissed) {
-                window.location.href = '../pages/login.php';
+                window.location.href = 'http://localhost/youdemy2.0/User/login';
             }
         });
     </script>";
@@ -76,6 +76,7 @@ if (isset($_SESSION['Log'])) {
             </select>
         </div>
     </div>
+
     <!-- Course List -->
     <div class="">
         <div id="results" class="grid grid-cols-1 md:grid-cols-3 gap-6">
