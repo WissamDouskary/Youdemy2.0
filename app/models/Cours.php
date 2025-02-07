@@ -84,4 +84,14 @@ Class Cours {
         $this->db->execute();
         return $this->db->resultSet();
     }
+
+    public function getCourseById($course_id){
+        $this->db->query('SELECT c.*, u.prenom, u.nom, u.user_id
+            FROM courses c
+            LEFT JOIN users u ON c.teacher_id = u.user_id
+            WHERE c.course_id = :course_id');
+        $this->db->bindParam(':course_id', $course_id);
+        $this->db->execute();
+        return $this->db->single();
+    }
 }
