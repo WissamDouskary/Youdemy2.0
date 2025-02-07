@@ -1,5 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css" integrity="sha512-xmGTNt20S0t62wHLmQec2DauG9T+owP9e6VU8GigI0anN7OXLip9i7IwEhelasml2osdxX71XcYm6BQunTQeQg==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js" integrity="sha512-9UR1ynHntZdqHnwXKTaOm1s6V9fExqejKvg5XMawEMToW4sSw+3jtLrYfZPijvnwnnE8Uol1O9BcAskoxgec+g==" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- DataTables CDN (CSS) -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.2.1/css/dataTables.dataTables.css" />
+
+    <!-- jQuery and DataTables JS (JavaScript) -->
+    <script src="https://cdn.datatables.net/2.2.1/js/dataTables.min.js"></script>
+
+
+
+    <title>YouDemy - Admin Dashboard</title>
+    <style>
+        .bg-primary { background-color: #7b39ed; }
+        .modal.active {
+            display: flex;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+        .bootstrap-tagsinput {
+            display: flex;
+            flex-wrap: wrap;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            padding: 2px 8px;
+            min-height: 36px;
+            z-index: 9999;
+        }
+
+        .bootstrap-tagsinput .tag {
+            background-color: #007bff;
+            color: white;
+            border-radius: 4px;
+            margin: 2px;
+            padding: 4px 8px;
+        }
+
+        .bootstrap-tagsinput input {
+            border: none;
+            outline: none;
+            min-width: 120px;
+            margin: 2px;
+        }
+
+
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+<nav class="bg-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="flex justify-between items-center h-16">
+            <div class="flex items-center">
+                <span class="text-2xl font-bold text-purple-600">YouDemy</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span class="text-gray-600">Admin Panel</span>
+                <a href="<?php echo URLROOT ?>/User/logout"><button class="text-gray-600 hover:text-gray-900">Logout</button></a>
+            </div>
+        </div>
+    </div>
+</nav>
+
 <?php
-require_once APPROOT . '/views/profdashboard/inc/header_dash.php';
 if (isset($_SESSION['message'])) {
     $message = $_SESSION['message'];
     $type = $message['type'];
@@ -28,15 +104,15 @@ if (isset($_SESSION['message'])) {
     <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
         <div class="bg-white p-6 rounded-lg shadow-sm">
             <h3 class="text-gray-500 text-sm mb-1">Total Users</h3>
-            <p class="text-3xl font-bold"><?php echo Cours::GetTotalEnrolledStudents(); ?></p>
+            <p class="text-3xl font-bold">10</p>
         </div>
         <div class="bg-white p-6 rounded-lg shadow-sm">
             <h3 class="text-gray-500 text-sm mb-1">Total Courses</h3>
-            <p class="text-3xl font-bold"><?php echo Cours::GetTotalCourses(); ?></p>
+            <p class="text-3xl font-bold">10</p>
         </div>
         <div class="bg-white p-6 rounded-lg shadow-sm">
             <h3 class="text-gray-500 text-sm mb-1">Active Instructors</h3>
-            <p class="text-3xl font-bold"><?php echo Teacher::totalTeachers(); ?></p>
+            <p class="text-3xl font-bold">10</p>
         </div>
     </div>
 
@@ -75,22 +151,17 @@ if (isset($_SESSION['message'])) {
                 </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-                <?php
-                $rows = Category::showCategories();
-                foreach($rows as $row) {
-                    ?>
                     <tr class="hover:bg-gray-50 transition-colors duration-200">
-                        <td class="px-6 py-4 text-sm text-gray-900 pr-28"><?php echo $row['category_id'] ?></td>
+                        <td class="px-6 py-4 text-sm text-gray-900 pr-28">1</td>
                         <td class="px-6 py-4">
-                            <span class="text-sm font-medium text-gray-900 pr-60"><?php echo $row['name'] ?></span>
+                            <span class="text-sm font-medium text-gray-900 pr-60">nnnn</span>
                         </td>
                         <td class="px-6 py-4">
                             <div class="flex items-center space-x-6">
-                                <a href="../Handling/deletecategorieHandl.php?id=<?php echo $row['category_id'] ?>"><button class="text-red-600 hover:text-red-800 transition-colors duration-200">Delete</button></a>
+                                <a href="../Handling/deletecategorieHandl.php?id="><button class="text-red-600 hover:text-red-800 transition-colors duration-200">Delete</button></a>
                             </div>
                         </td>
                     </tr>
-                <?php } ?>
                 </tbody>
             </table>
         </div>
@@ -112,22 +183,17 @@ if (isset($_SESSION['message'])) {
                 </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-                <?php
-                $rows = Tag::showalltags();
-                foreach($rows as $row) {
-                    ?>
                     <tr class="hover:bg-gray-50 transition-colors duration-200">
-                        <td class="px-6 py-4 text-sm text-gray-900 pr-28"><?php echo $row->tag_id ?></td>
+                        <td class="px-6 py-4 text-sm text-gray-900 pr-28">1</td>
                         <td class="px-6 py-4">
-                            <span class="text-sm font-medium text-gray-900 pr-60"><?php echo $row->getname() ?></span>
+                            <span class="text-sm font-medium text-gray-900 pr-60">tag</span>
                         </td>
                         <td class="px-6 py-4">
                             <div class="flex items-center space-x-6">
-                                <a href="../Handling/deletetaghandling.php?id=<?php echo $row->tag_id ?>"><button class="text-red-600 hover:text-red-800 transition-colors duration-200">Delete</button></a>
+                                <a href="../Handling/deletetaghandling.php?id="><button class="text-red-600 hover:text-red-800 transition-colors duration-200">Delete</button></a>
                             </div>
                         </td>
                     </tr>
-                <?php } ?>
                 </tbody>
             </table>
         </div>
@@ -146,39 +212,19 @@ if (isset($_SESSION['message'])) {
                     <th class="pb-4">Actions</th>
                 </tr>
                 </thead>
-                <?php
-
-                $users = Admin::getallusers();
-                foreach($users as $user){
-                    ?>
                     <tbody>
                     <tr class="border-b">
-                        <td class="py-4"><?php echo $user->getPrenom() . " " . $user->getNom() ?></td>
-                        <td><?php echo $user->getrole() ?></td>
-                        <?php if($user->getStatus() === 'waiting'){ ?>
-                            <td><span class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-sm"><?php echo $user->getStatus() ?></span></td>
-                        <?php } else if ($user->getStatus() === 'active'){ ?>
-                            <td><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-sm"><?php echo $user->getStatus() ?></span></td>
-                        <?php }else if ($user->getStatus() === 'suspended'){ ?>
-                            <td><span class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-sm"><?php echo $user->getStatus() ?></span></td>
-                        <?php } ?>
+                        <td class="py-4">ahmad sasa</td>
+                        <td>role</td>
+                            <td><span class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-sm">name</span></td>
                         <td >
                             <div class="flex gap-3">
-                                <form action="../Handling/userHandl.php" method="post">
-                                    <input type="hidden" name="action" value="active">
-                                    <input type="hidden" name="user_id" value="<?php echo $user->getId(); ?>">
-                                    <button type="submit" class="text-green-600 hover:text-green-800">Approve</button>
-                                </form>
-                                <form action="../Handling/userHandl.php" method="post">
-                                    <input type="hidden" name="action" value="suspended">
-                                    <input type="hidden" name="user_id" value="<?php echo $user->getId(); ?>">
-                                    <button type="submit" class="text-red-600 hover:text-red-800">Ban</button>
-                                </form>
+                                <button type="submit" class="text-green-600 hover:text-green-800">Approve</button>
+                                <button type="submit" class="text-red-600 hover:text-red-800">Ban</button>
                             </div>
                         </td>
                     </tr>
                     </tbody>
-                <?php } ?>
             </table>
         </div>
     </div>
@@ -296,3 +342,5 @@ if (isset($_SESSION['message'])) {
     });
 
 </script>
+</body>
+</html>
