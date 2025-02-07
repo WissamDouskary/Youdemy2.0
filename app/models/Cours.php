@@ -68,4 +68,20 @@ Class Cours {
         $this->db->query('SELECT * FROM categories');
         return $this->db->resultSet();
     }
+
+    public function getAllCourses(){
+        $this->db->query('SELECT c.*, u.prenom, u.nom, u.user_id
+            FROM courses c
+            LEFT JOIN users u ON c.teacher_id = u.user_id');
+        return $this->db->resultSet();
+    }
+
+    public function getTagsbycourse($course_id){
+        $this->db->query('SELECT t.name FROM course_tags ct
+            LEFT JOIN tags t ON ct.tag_id = t.tag_id
+            WHERE ct.course_id = :course_id');
+        $this->db->bindParam(':course_id', $course_id);
+        $this->db->execute();
+        return $this->db->resultSet();
+    }
 }

@@ -29,14 +29,14 @@ class courses extends Controller {
             }
             if ($course_type === 'video') {
                 if (isset($_FILES['course_content']) && isset($_FILES['course_image'])) {
-                    $uploadDirVideo = '/public/uploads/videos/';
+                    $uploadDirVideo = 'public/uploads/videos/';
                     if (!is_dir($uploadDirVideo)) {
                         mkdir($uploadDirVideo, 0777, true);
                     }
                     $videoFile = $_FILES['course_content'];
                     $videoPath = $uploadDirVideo . basename($videoFile['name']);
 
-                    $uploadDirImage = '/public/uploads/images/';
+                    $uploadDirImage = 'public/uploads/images/';
                     if (!is_dir($uploadDirImage)) {
                         mkdir($uploadDirImage, 0777, true);
                     }
@@ -65,7 +65,7 @@ class courses extends Controller {
                     }
                 }
             } else if ($course_type === 'document'){
-                $uploadDirImage = '/public/uploads/images/';
+                $uploadDirImage = 'public/uploads/images/';
                 if (!is_dir($uploadDirImage)) {
                     mkdir($uploadDirImage, 0777, true);
                 }

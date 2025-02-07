@@ -14,7 +14,15 @@ Class pages extends Controller {
     }
 
     public function courses(){
-        $this->view('pages/courses');
+        $courses = $this->courModel->getAllCourses();
+
+        foreach ($courses as $course) {
+            $course->tags = $this->courModel->getTagsbycourse($course->course_id);
+        }
+
+        $data = ['courses' => $courses];
+
+        $this->view('pages/courses', $data);
     }
 
     public function admindash(){
