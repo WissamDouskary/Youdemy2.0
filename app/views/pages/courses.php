@@ -80,37 +80,41 @@ if (isset($_SESSION['Log'])) {
     <div class="">
         <div id="results" class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <!-- Course Card 1 -->
+            <?php foreach ($data['courses'] as $course) { ?>
                 <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300">
                     <!-- Course Thumbnail -->
                     <div class="relative">
-                        <img src="" alt="Course thumbnail" class="w-full h-48 object-cover"/>
+                        <img src="<?php echo '../' . $course->course_image ?>" alt="Course thumbnail" class="w-full h-48 object-cover"/>
                         <!-- course type -->
-                            <span class="absolute top-4 left-4 bg-white/90 px-2 py-1 rounded text-xs font-medium text-white bg-purple-600 rounded-full">
+                        <?php if($course->course_type == 'video'){ ?>
+                        <span class="absolute top-4 left-4 bg-white/90 px-2 py-1 rounded text-xs font-medium text-white bg-purple-600 rounded-full">
                             Video
                         </span>
-<!--                            <span class="absolute top-4 left-4 bg-white/90 px-2 py-1 rounded text-xs font-medium text-white bg-green-600 rounded-full">-->
-<!--                            document-->
-<!--                            </span>-->
+                        <?php }else{ ?>
+                            <span class="absolute top-4 left-4 bg-white/90 px-2 py-1 rounded text-xs font-medium text-white bg-green-600 rounded-full">
+                            document
+                            </span>
+                        <?php } ?>
                     </div>
 
                     <div class="p-6">
                         <!-- Course Title -->
                         <div class="flex justify-between items-start mb-2">
                             <h3 class="font-semibold hover:text-purple-600 transition-colors">
-                                title
+                                <?php echo $course->title ?>
                             </h3>
                         </div>
 
                         <!-- Course Description -->
                         <p class="text-gray-600 text-sm mb-4">
-                             description
+                            <?php echo $course->description ?>
                         </p>
 
                         <!-- Instructor & Date -->
                         <div class="flex items-center mb-3">
-                            <span class="text-sm text-gray-600">By ahmad</span>
+                            <span class="text-sm text-gray-600">By <?php echo $course->prenom ." " . $course->nom ?></span>
                             <span class="mx-2">•</span>
-                            <span class="text-sm text-gray-600">Updated 20-20-2020</span>
+                            <span class="text-sm text-gray-600">Updated <?php echo $course->date_creation ?></span>
                         </div>
 
                         <!-- Course Stats -->
@@ -122,23 +126,23 @@ if (isset($_SESSION['Log'])) {
                                 1020
                             </div>
                             <span class="mx-2">•</span>
+                            <?php foreach ($course->tags as $tag){ ?>
                             <div>
-                                <span class="bg-gray-100 px-3 py-1 rounded-full text-sm">tag</span>
+                                <span class="bg-gray-100 px-3 py-1 rounded-full text-sm"><?php echo $tag->name ?></span>
                             </div>
+                            <?php } ?>
                         </div>
                         <!-- Price and Enroll Button -->
                         <div class="flex items-center justify-between mt-4">
-                            <span class="text-lg font-bold text-purple-600">50$</span>
+                            <span class="text-lg font-bold text-purple-600"><?php echo $course->price ?>$</span>
                             <div>
                                 <a href=""><button class="bg-purple-600 text-white px-6 py-2 rounded-full hover:bg-purple-700 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50">
-                                        View
-                                    </button></a>
-                                <a href="../Handling/enrollHandle.php?course_id="><button class="bg-purple-600 text-white px-6 py-2 rounded-full hover:bg-purple-700 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50">
                                         Enroll Now
                                     </button></a>
                             </div>
                         </div>
                     </div>
                 </div>
+            <?php } ?>
         </div>
 </div>
