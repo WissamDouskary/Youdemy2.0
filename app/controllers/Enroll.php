@@ -7,6 +7,14 @@ Class Enroll extends Controller{
     }
 
     public function addtoEnroll($course_id){
+        if(!isset($_SESSION['user_id'])){
+            $_SESSION['Log'] = [
+                'type' => 'info',
+                'text' => "you must log in to enroll a course!"
+            ];
+            redirect('pages/courses');
+            exit();
+        }
         if($_SERVER['REQUEST_METHOD'] == 'GET'){
             try {
                 $this->currentModal->enroll($course_id);
@@ -24,8 +32,13 @@ Class Enroll extends Controller{
                 redirect('pages/courses');
                 exit();
             }
+        }else{
+            $_SESSION['message'] = [
+                'type' => 'Log',
+                'text' => "you must have a valid session to enroll a course!"
+            ];
+            redirect('pages/courses');
+            exit();
         }
     }
 }
-
-// cantlect
